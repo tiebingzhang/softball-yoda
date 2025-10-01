@@ -1,0 +1,565 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Softball Yoda - AI-Powered Softball Training Assistant</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary-color: #22C55E;
+            --secondary-color: #FF6B35;
+            --dark: #1a1a2e;
+            --light: #f8f9fa;
+            --text-dark: #2d2d2d;
+            --text-light: #6c757d;
+            --accent: #FFD700;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            line-height: 1.6;
+            color: var(--text-dark);
+            overflow-x: hidden;
+        }
+
+        /* Header */
+        header {
+            background: linear-gradient(135deg, var(--primary-color), #16A34A);
+            padding: 1.5rem 2rem;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .logo {
+            font-size: 2rem;
+            font-weight: 800;
+            color: white;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .logo::before {
+            content: "🥎";
+            font-size: 2.5rem;
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, #16A34A 0%, var(--primary-color) 100%);
+            color: white;
+            padding: 6rem 2rem;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.05'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+            opacity: 0.3;
+        }
+
+        .hero-content {
+            max-width: 900px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            font-weight: 900;
+            margin-bottom: 1rem;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+        }
+
+        .hero-subtitle {
+            font-size: 1.3rem;
+            margin-bottom: 2rem;
+            opacity: 0.95;
+            font-weight: 300;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            margin-bottom: 3rem;
+            line-height: 1.8;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        /* CTA Button */
+        .cta-button {
+            display: inline-block;
+            background: var(--secondary-color);
+            color: white;
+            padding: 1.5rem 4rem;
+            font-size: 1.5rem;
+            font-weight: 700;
+            text-decoration: none;
+            border-radius: 50px;
+            transition: all 0.3s ease;
+            box-shadow: 0 10px 30px rgba(255, 107, 53, 0.4);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            border: 3px solid var(--secondary-color);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .cta-button::before {
+            content: "";
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.2);
+            transform: translate(-50%, -50%);
+            transition: width 0.6s, height 0.6s;
+        }
+
+        .cta-button:hover::before {
+            width: 400px;
+            height: 400px;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 40px rgba(255, 107, 53, 0.5);
+            background: #ff7f50;
+        }
+
+        .cta-button:active {
+            transform: translateY(-1px);
+        }
+
+        /* Features Section */
+        .features {
+            padding: 5rem 2rem;
+            background: white;
+        }
+
+        .features-grid {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .feature-card {
+            background: var(--light);
+            padding: 2rem;
+            border-radius: 15px;
+            text-align: center;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            border: 2px solid transparent;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 10px 30px rgba(34, 197, 94, 0.2);
+            border-color: var(--primary-color);
+        }
+
+        .feature-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        .feature-card h3 {
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+            font-size: 1.3rem;
+        }
+
+        /* Sample Chats Section */
+        .sample-chats {
+            padding: 5rem 2rem;
+            background: linear-gradient(to bottom, var(--light), white);
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            font-weight: 800;
+            color: var(--dark);
+            margin-bottom: 3rem;
+            position: relative;
+            padding-bottom: 1rem;
+        }
+
+        .section-title::after {
+            content: "";
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 4px;
+            background: linear-gradient(to right, var(--primary-color), var(--secondary-color));
+            border-radius: 2px;
+        }
+
+        .chats-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+        }
+
+        .chat-card {
+            background: white;
+            border-radius: 15px;
+            padding: 2rem;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            border: 2px solid var(--light);
+        }
+
+        .chat-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 40px rgba(0,0,0,0.15);
+            border-color: var(--primary-color);
+        }
+
+        .chat-question {
+            background: var(--primary-color);
+            color: white;
+            padding: 1rem 1.5rem;
+            border-radius: 10px;
+            font-weight: 700;
+            font-size: 1.1rem;
+            margin-bottom: 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .chat-question::before {
+            content: "✓";
+            background: white;
+            color: var(--primary-color);
+            width: 25px;
+            height: 25px;
+            border-radius: 5px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            flex-shrink: 0;
+        }
+
+        .chat-answer {
+            color: var(--text-dark);
+            line-height: 1.8;
+        }
+
+        .chat-answer h4 {
+            color: var(--dark);
+            margin: 1.5rem 0 0.8rem 0;
+            font-size: 1.1rem;
+        }
+
+        .chat-answer ul, .chat-answer ol {
+            margin-left: 1.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .chat-answer li {
+            margin-bottom: 0.8rem;
+        }
+
+        .chat-answer strong {
+            color: var(--dark);
+            font-weight: 700;
+        }
+
+        .workout-item {
+            margin-bottom: 0.5rem;
+            padding-left: 1rem;
+        }
+
+        /* Contribute Section */
+        .contribute {
+            padding: 5rem 2rem;
+            background: var(--dark);
+            color: white;
+        }
+
+        .contribute-content {
+            max-width: 900px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .contribute h2 {
+            color: white;
+            margin-bottom: 2rem;
+        }
+
+        .contribute-list {
+            text-align: left;
+            max-width: 600px;
+            margin: 2rem auto;
+            background: rgba(255, 255, 255, 0.05);
+            padding: 2rem;
+            border-radius: 15px;
+            border: 2px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .contribute-list p {
+            font-size: 1.1rem;
+            margin-bottom: 2rem;
+            color: var(--accent);
+            font-weight: 600;
+        }
+
+        .contribute-list ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .contribute-list li {
+            padding: 1rem;
+            margin-bottom: 1rem;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 10px;
+            border-left: 4px solid var(--primary-color);
+            transition: all 0.3s ease;
+        }
+
+        .contribute-list li:hover {
+            background: rgba(255, 255, 255, 0.1);
+            transform: translateX(10px);
+        }
+
+        .email-contact {
+            display: inline-block;
+            background: var(--primary-color);
+            color: white;
+            padding: 1rem 2rem;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1.1rem;
+            margin-top: 2rem;
+            transition: all 0.3s ease;
+        }
+
+        .email-contact:hover {
+            background: var(--secondary-color);
+            transform: scale(1.05);
+        }
+
+        /* Footer */
+        footer {
+            background: #0f0f1e;
+            color: white;
+            text-align: center;
+            padding: 2rem;
+        }
+
+        footer p {
+            opacity: 0.8;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .hero p {
+                font-size: 1rem;
+            }
+
+            .cta-button {
+                padding: 1.2rem 2.5rem;
+                font-size: 1.2rem;
+            }
+
+            .chats-container {
+                grid-template-columns: 1fr;
+            }
+
+            .section-title {
+                font-size: 2rem;
+            }
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .hero-content > * {
+            animation: fadeInUp 0.8s ease-out forwards;
+        }
+
+        .hero h1 {
+            animation-delay: 0.1s;
+        }
+
+        .hero-subtitle {
+            animation-delay: 0.2s;
+        }
+
+        .hero p {
+            animation-delay: 0.3s;
+        }
+
+        .cta-button {
+            animation-delay: 0.4s;
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <a href="#" class="logo">Softball Yoda</a>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content">
+            <h1>Welcome to the Softball Yoda Community</h1>
+            <p class="hero-subtitle">Your AI-Powered Training Companion</p>
+            <p>Connect, learn and grow your game with Softball Yoda, our AI-powered chatbot designed to answer your questions, design training drills, offer nutrition tips, and bring players together.</p>
+            <a href="https://chatgpt.com/g/g-67aea3b01bd881918f4b10bf7e10573e-softball-yoda" class="cta-button">Start Chatting</a>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="features">
+        <div class="features-grid">
+            <div class="feature-card">
+                <div class="feature-icon">🎯</div>
+                <h3>Personalized Training</h3>
+                <p>Get custom training drills and workouts tailored to your skill level and goals</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">💪</div>
+                <h3>Expert Guidance</h3>
+                <p>Receive professional advice on technique, strategy, and game improvement</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">🥗</div>
+                <h3>Nutrition Tips</h3>
+                <p>Learn about optimal nutrition and meal planning for peak performance</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">🆓</div>
+                <h3>Completely Free</h3>
+                <p>This service is completely free - only a free ChatGPT account is needed to get started</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Sample Chats Section -->
+    <section class="sample-chats">
+        <h2 class="section-title">Sample Chats & Answers</h2>
+        <div class="chats-container">
+            <!-- Chat 1 -->
+            <div class="chat-card">
+                <div class="chat-question">
+                    How to test if a bat truly fits
+                </div>
+                <div class="chat-answer">
+                    <p>Beyond guidelines, the <em>feel</em> is what tells you what works best. Try these:</p>
+                    
+                    <h4>1. Reach test</h4>
+                    <ul>
+                        <li>Place the knob of the bat against her chest (sternum), barrel out to the side.</li>
+                        <li>If she can just barely reach the end of the barrel with her fingertips, it's a good length.</li>
+                    </ul>
+
+                    <h4>2. Swing-weight test</h4>
+                    <ul>
+                        <li>Have her hold the bat out straight (one arm) parallel to the ground for 20–30 seconds.</li>
+                        <li>If she strains, leans, or can't keep it level, the bat is probably too heavy.</li>
+                    </ul>
+
+                    <h4>3. Control vs. power balance</h4>
+                    <ul>
+                        <li>Start with a lighter bat that she can control well and swing fast.</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Chat 2 -->
+            <div class="chat-card">
+                <div class="chat-question">
+                    Accuracy Tune-Up + Arm Activation
+                </div>
+                <div class="chat-answer">
+                    <p><strong>Goal:</strong> Light throwing day to rewire precision and feel</p>
+                    
+                    <h4>Workout:</h4>
+                    <div class="workout-item">⚡ <strong>Resistance Band Shoulder Activation</strong> – 2x15</div>
+                    <div class="workout-item">🎯 <strong>Wrist Snap Drill</strong> – 3x20 (normal ball)</div>
+                    <div class="workout-item">🎯 <strong>4-Corner Target Drill (Light Throws)</strong> – 3 rounds</div>
+                    <div class="workout-item">🧘 <strong>Yoga Flow + Stretching</strong> – 15 min</div>
+                    <div class="workout-item">🔥 <strong>Plank with Reach</strong> – 3x30 sec</div>
+                    <div class="workout-item">🎯 <strong>Spin Drill (Grip & Flick)</strong> – 3x10</div>
+                    <div class="workout-item">🧠 <strong>Visualization (Pitch sequences, pressure count)</strong> – 5 min</div>
+
+                    <h4>Meal Plan (Accuracy + Energy):</h4>
+                    <ul>
+                        <li><strong>Breakfast:</strong> Protein pancakes + almond butter</li>
+                        <li><strong>Lunch:</strong> Tuna salad wrap + fruit</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contribute Section -->
+    <section class="contribute">
+        <div class="contribute-content">
+            <h2 class="section-title" style="color: white;">You Can Contribute Too!</h2>
+            <div class="contribute-list">
+                <p>Help us build the ultimate softball training community:</p>
+                <ul>
+                    <li>📚 Donate your training books, videos, and drills</li>
+                    <li>🌐 Share our website and help train the chatbot</li>
+                    <li>⭐ Drop a review and share your experience</li>
+                </ul>
+            </div>
+            <a href="mailto:help@softballyoda.com" class="email-contact">📧 help@softballyoda.com</a>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2025 Softball Yoda. All rights reserved.</p>
+    </footer>
+</body>
+</html>
