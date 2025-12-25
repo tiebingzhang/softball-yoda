@@ -1,419 +1,82 @@
 <!DOCTYPE html>
 <html lang="en">
-	<head>
-	<!-- Google tag (gtag.js) -->
-	<script async src="https://www.googletagmanager.com/gtag/js?id=G-Q7WNL58TL2"></script>
-	<script>
-		window.dataLayer = window.dataLayer || [];
-		function gtag(){dataLayer.push(arguments);}
-		gtag('js', new Date());
-		gtag('config', 'G-Q7WNL58TL2');
-	</script>
+<head>
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-Q7WNL58TL2"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-Q7WNL58TL2');
+    </script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Softball Yoda - AI-Powered Softball Training Assistant</title>
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    
     <style>
-        * {
+        *, *::before, *::after {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
         }
 
         :root {
-            --primary-color: #22C55E;
-            --secondary-color: #FF6B35;
-            --dark: #1a1a2e;
-            --light: #f8f9fa;
-            --text-dark: #2d2d2d;
-            --text-light: #6c757d;
-            --accent: #FFD700;
+            --bg-primary: #0a0a0f;
+            --bg-secondary: #0f0f17;
+            --bg-tertiary: #141420;
+            --bg-card: rgba(20, 20, 35, 0.6);
+            --border-subtle: rgba(255, 255, 255, 0.06);
+            --border-hover: rgba(255, 255, 255, 0.12);
+            --text-primary: #f4f4f5;
+            --text-secondary: #a1a1aa;
+            --text-muted: #71717a;
+            --accent-primary: #8b5cf6;
+            --accent-secondary: #a78bfa;
+            --accent-glow: rgba(139, 92, 246, 0.4);
+            --accent-soft: rgba(139, 92, 246, 0.1);
+            --gradient-text: linear-gradient(135deg, #f4f4f5 0%, #a78bfa 50%, #8b5cf6 100%);
+            --gradient-accent: linear-gradient(135deg, #8b5cf6 0%, #a78bfa 100%);
+            --gradient-hero: radial-gradient(ellipse 80% 50% at 50% -20%, rgba(139, 92, 246, 0.15) 0%, transparent 50%);
+            --font-sans: 'Instrument Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+            --font-mono: 'JetBrains Mono', monospace;
+        }
+
+        html {
+            scroll-behavior: smooth;
         }
 
         body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            font-family: var(--font-sans);
+            background: var(--bg-primary);
+            color: var(--text-primary);
             line-height: 1.6;
-            color: var(--text-dark);
             overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
         }
 
-        /* Header */
-        header {
-            background: linear-gradient(135deg, var(--primary-color), #16A34A);
-            padding: 1.5rem 2rem;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-            position: sticky;
-            top: 0;
-            z-index: 100;
-        }
-
-        .logo {
-            font-size: 2rem;
-            font-weight: 800;
+        ::selection {
+            background: var(--accent-primary);
             color: white;
-            text-decoration: none;
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
         }
 
-        .logo::before {
-            content: "🥎";
-            font-size: 2.5rem;
-        }
-
-        /* Hero Section */
-        .hero {
-            background: linear-gradient(135deg, #16A34A 0%, var(--primary-color) 100%);
-            color: white;
-            padding: 6rem 2rem;
-            text-align: center;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .hero::before {
+        /* Noise texture overlay */
+        body::before {
             content: "";
-            position: absolute;
+            position: fixed;
             top: 0;
             left: 0;
-            right: 0;
-            bottom: 0;
-            background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.05'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
-            opacity: 0.3;
-        }
-
-        .hero-content {
-            max-width: 900px;
-            margin: 0 auto;
-            position: relative;
-            z-index: 1;
-        }
-
-        .hero h1 {
-            font-size: 3.5rem;
-            font-weight: 900;
-            margin-bottom: 1rem;
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
-        }
-
-        .hero-subtitle {
-            font-size: 1.3rem;
-            margin-bottom: 2rem;
-            opacity: 0.95;
-            font-weight: 300;
-        }
-
-        .hero p {
-            font-size: 1.2rem;
-            margin-bottom: 3rem;
-            line-height: 1.8;
-            max-width: 800px;
-            margin-left: auto;
-            margin-right: auto;
-        }
-
-        /* CTA Button */
-        .cta-button {
-            display: inline-block;
-            background: var(--secondary-color);
-            color: white;
-            padding: 1.5rem 4rem;
-            font-size: 1.5rem;
-            font-weight: 700;
-            text-decoration: none;
-            border-radius: 50px;
-            transition: all 0.3s ease;
-            box-shadow: 0 10px 30px rgba(255, 107, 53, 0.4);
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            border: 3px solid var(--secondary-color);
-            position: relative;
-            overflow: hidden;
-        }
-
-        .cta-button::before {
-            content: "";
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            width: 0;
-            height: 0;
-            border-radius: 50%;
-            background: rgba(255, 255, 255, 0.2);
-            transform: translate(-50%, -50%);
-            transition: width 0.6s, height 0.6s;
-        }
-
-        .cta-button:hover::before {
-            width: 400px;
-            height: 400px;
-        }
-
-        .cta-button:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 15px 40px rgba(255, 107, 53, 0.5);
-            background: #ff7f50;
-        }
-
-        .cta-button:active {
-            transform: translateY(-1px);
-        }
-
-        /* Features Section */
-        .features {
-            padding: 5rem 2rem;
-            background: white;
-        }
-
-        .features-grid {
-            max-width: 1200px;
-            margin: 0 auto;
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 2rem;
-            margin-top: 3rem;
-        }
-
-        .feature-card {
-            background: var(--light);
-            padding: 2rem;
-            border-radius: 15px;
-            text-align: center;
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-            border: 2px solid transparent;
-        }
-
-        .feature-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 10px 30px rgba(34, 197, 94, 0.2);
-            border-color: var(--primary-color);
-        }
-
-        .feature-icon {
-            font-size: 3rem;
-            margin-bottom: 1rem;
-        }
-
-        .feature-card h3 {
-            color: var(--primary-color);
-            margin-bottom: 1rem;
-            font-size: 1.3rem;
-        }
-
-        /* Sample Chats Section */
-        .sample-chats {
-            padding: 5rem 2rem;
-            background: linear-gradient(to bottom, var(--light), white);
-        }
-
-        .section-title {
-            text-align: center;
-            font-size: 2.5rem;
-            font-weight: 800;
-            color: var(--dark);
-            margin-bottom: 3rem;
-            position: relative;
-            padding-bottom: 1rem;
-        }
-
-        .section-title::after {
-            content: "";
-            position: absolute;
-            bottom: 0;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 100px;
-            height: 4px;
-            background: linear-gradient(to right, var(--primary-color), var(--secondary-color));
-            border-radius: 2px;
-        }
-
-        .chats-container {
-            max-width: 1200px;
-            margin: 0 auto;
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-            gap: 2rem;
-        }
-
-        .chat-card {
-            background: white;
-            border-radius: 15px;
-            padding: 2rem;
-            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-            border: 2px solid var(--light);
-        }
-
-        .chat-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 40px rgba(0,0,0,0.15);
-            border-color: var(--primary-color);
-        }
-
-        .chat-question {
-            background: var(--primary-color);
-            color: white;
-            padding: 1rem 1.5rem;
-            border-radius: 10px;
-            font-weight: 700;
-            font-size: 1.1rem;
-            margin-bottom: 1.5rem;
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-        }
-
-        .chat-question::before {
-            content: "✓";
-            background: white;
-            color: var(--primary-color);
-            width: 25px;
-            height: 25px;
-            border-radius: 5px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-weight: bold;
-            flex-shrink: 0;
-        }
-
-        .chat-answer {
-            color: var(--text-dark);
-            line-height: 1.8;
-        }
-
-        .chat-answer h4 {
-            color: var(--dark);
-            margin: 1.5rem 0 0.8rem 0;
-            font-size: 1.1rem;
-        }
-
-        .chat-answer ul, .chat-answer ol {
-            margin-left: 1.5rem;
-            margin-bottom: 1rem;
-        }
-
-        .chat-answer li {
-            margin-bottom: 0.8rem;
-        }
-
-        .chat-answer strong {
-            color: var(--dark);
-            font-weight: 700;
-        }
-
-        .workout-item {
-            margin-bottom: 0.5rem;
-            padding-left: 1rem;
-        }
-
-        /* Contribute Section */
-        .contribute {
-            padding: 5rem 2rem;
-            background: var(--dark);
-            color: white;
-        }
-
-        .contribute-content {
-            max-width: 900px;
-            margin: 0 auto;
-            text-align: center;
-        }
-
-        .contribute h2 {
-            color: white;
-            margin-bottom: 2rem;
-        }
-
-        .contribute-list {
-            text-align: left;
-            max-width: 600px;
-            margin: 2rem auto;
-            background: rgba(255, 255, 255, 0.05);
-            padding: 2rem;
-            border-radius: 15px;
-            border: 2px solid rgba(255, 255, 255, 0.1);
-        }
-
-        .contribute-list p {
-            font-size: 1.1rem;
-            margin-bottom: 2rem;
-            color: var(--accent);
-            font-weight: 600;
-        }
-
-        .contribute-list ul {
-            list-style: none;
-            padding: 0;
-        }
-
-        .contribute-list li {
-            padding: 1rem;
-            margin-bottom: 1rem;
-            background: rgba(255, 255, 255, 0.05);
-            border-radius: 10px;
-            border-left: 4px solid var(--primary-color);
-            transition: all 0.3s ease;
-        }
-
-        .contribute-list li:hover {
-            background: rgba(255, 255, 255, 0.1);
-            transform: translateX(10px);
-        }
-
-        .email-contact {
-            display: inline-block;
-            background: var(--primary-color);
-            color: white;
-            padding: 1rem 2rem;
-            border-radius: 30px;
-            text-decoration: none;
-            font-weight: 600;
-            font-size: 1.1rem;
-            margin-top: 2rem;
-            transition: all 0.3s ease;
-        }
-
-        .email-contact:hover {
-            background: var(--secondary-color);
-            transform: scale(1.05);
-        }
-
-        /* Footer */
-        footer {
-            background: #0f0f1e;
-            color: white;
-            text-align: center;
-            padding: 2rem;
-        }
-
-        footer p {
-            opacity: 0.8;
-        }
-
-        /* Responsive */
-        @media (max-width: 768px) {
-            .hero h1 {
-                font-size: 2.5rem;
-            }
-
-            .hero p {
-                font-size: 1rem;
-            }
-
-            .cta-button {
-                padding: 1.2rem 2.5rem;
-                font-size: 1.2rem;
-            }
-
-            .chats-container {
-                grid-template-columns: 1fr;
-            }
-
-            .section-title {
-                font-size: 2rem;
-            }
+            width: 100%;
+            height: 100%;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+            opacity: 0.02;
+            pointer-events: none;
+            z-index: 1000;
         }
 
         /* Animations */
@@ -428,122 +91,1105 @@
             }
         }
 
-        .hero-content > * {
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        @keyframes shimmer {
+            0% { background-position: -200% 0; }
+            100% { background-position: 200% 0; }
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+
+        @keyframes pulse-glow {
+            0%, 100% { box-shadow: 0 0 30px var(--accent-glow); }
+            50% { box-shadow: 0 0 60px var(--accent-glow), 0 0 100px rgba(139, 92, 246, 0.2); }
+        }
+
+        @keyframes gradient-shift {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        .animate-in {
             animation: fadeInUp 0.8s ease-out forwards;
+            opacity: 0;
+        }
+
+        .delay-1 { animation-delay: 0.1s; }
+        .delay-2 { animation-delay: 0.2s; }
+        .delay-3 { animation-delay: 0.3s; }
+        .delay-4 { animation-delay: 0.4s; }
+        .delay-5 { animation-delay: 0.5s; }
+        .delay-6 { animation-delay: 0.6s; }
+
+        /* Header */
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 100;
+            padding: 1rem 2rem;
+            background: rgba(10, 10, 15, 0.8);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border-bottom: 1px solid var(--border-subtle);
+            transition: all 0.3s ease;
+        }
+
+        .header-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            text-decoration: none;
+            color: var(--text-primary);
+            font-weight: 600;
+            font-size: 1.25rem;
+            letter-spacing: -0.02em;
+            transition: opacity 0.2s ease;
+        }
+
+        .logo:hover {
+            opacity: 0.8;
+        }
+
+        .logo-icon {
+            font-size: 1.5rem;
+            filter: drop-shadow(0 0 8px var(--accent-glow));
+        }
+
+        .nav-cta {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.625rem 1.25rem;
+            background: var(--gradient-accent);
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 0.875rem;
+            border-radius: 8px;
+            transition: all 0.2s ease;
+            box-shadow: 0 0 20px var(--accent-glow);
+        }
+
+        .nav-cta:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 0 30px var(--accent-glow), 0 10px 40px rgba(139, 92, 246, 0.3);
+        }
+
+        /* Hero Section */
+        .hero {
+            position: relative;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 8rem 2rem 6rem;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: var(--gradient-hero);
+            pointer-events: none;
+        }
+
+        .hero::after {
+            content: "";
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 600px;
+            height: 600px;
+            background: radial-gradient(circle, rgba(139, 92, 246, 0.08) 0%, transparent 70%);
+            filter: blur(80px);
+            pointer-events: none;
+            animation: float 8s ease-in-out infinite;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 1;
+            max-width: 900px;
+            text-align: center;
+        }
+
+        .hero-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.5rem 1rem;
+            background: var(--accent-soft);
+            border: 1px solid rgba(139, 92, 246, 0.2);
+            border-radius: 100px;
+            font-size: 0.875rem;
+            color: var(--accent-secondary);
+            margin-bottom: 2rem;
+            font-weight: 500;
+        }
+
+        .hero-badge::before {
+            content: "";
+            width: 6px;
+            height: 6px;
+            background: var(--accent-primary);
+            border-radius: 50%;
+            box-shadow: 0 0 10px var(--accent-primary);
         }
 
         .hero h1 {
-            animation-delay: 0.1s;
+            font-size: clamp(3rem, 8vw, 5rem);
+            font-weight: 700;
+            line-height: 1.1;
+            letter-spacing: -0.03em;
+            margin-bottom: 1.5rem;
+            background: var(--gradient-text);
+            background-size: 200% auto;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: fadeInUp 0.8s ease-out forwards, gradient-shift 8s ease infinite;
         }
 
-        .hero-subtitle {
-            animation-delay: 0.2s;
+        .hero-description {
+            font-size: 1.25rem;
+            color: var(--text-secondary);
+            max-width: 600px;
+            margin: 0 auto 2.5rem;
+            line-height: 1.7;
         }
 
-        .hero p {
-            animation-delay: 0.3s;
+        .hero-cta {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.75rem;
+            padding: 1rem 2rem;
+            background: var(--gradient-accent);
+            color: white;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1rem;
+            border-radius: 12px;
+            transition: all 0.3s ease;
+            box-shadow: 0 0 30px var(--accent-glow);
+            animation: fadeInUp 0.8s ease-out forwards, pulse-glow 3s ease-in-out infinite;
         }
 
-        .cta-button {
-            animation-delay: 0.4s;
+        .hero-cta:hover {
+            transform: translateY(-3px) scale(1.02);
+            box-shadow: 0 0 50px var(--accent-glow), 0 20px 60px rgba(139, 92, 246, 0.4);
+        }
+
+        .hero-cta svg {
+            width: 20px;
+            height: 20px;
+            transition: transform 0.2s ease;
+        }
+
+        .hero-cta:hover svg {
+            transform: translateX(4px);
+        }
+
+        .hero-note {
+            margin-top: 1.5rem;
+            font-size: 0.875rem;
+            color: var(--text-muted);
+        }
+
+        /* Section Styling */
+        section {
+            padding: 6rem 2rem;
+            position: relative;
+        }
+
+        .section-container {
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+
+        .section-label {
+            display: inline-block;
+            font-family: var(--font-mono);
+            font-size: 0.75rem;
+            font-weight: 500;
+            color: var(--accent-secondary);
+            text-transform: uppercase;
+            letter-spacing: 0.15em;
+            margin-bottom: 1rem;
+        }
+
+        .section-title {
+            font-size: clamp(2rem, 5vw, 3rem);
+            font-weight: 700;
+            letter-spacing: -0.02em;
+            margin-bottom: 1rem;
+        }
+
+        .section-subtitle {
+            font-size: 1.125rem;
+            color: var(--text-secondary);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        /* Problem Section */
+        .problem {
+            background: var(--bg-secondary);
+        }
+
+        .problem-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .problem-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-subtle);
+            border-radius: 16px;
+            padding: 2rem;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .problem-card::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, var(--accent-primary), transparent);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .problem-card:hover {
+            border-color: var(--border-hover);
+            transform: translateY(-4px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+        }
+
+        .problem-card:hover::before {
+            opacity: 1;
+        }
+
+        .problem-icon {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+            display: block;
+        }
+
+        .problem-icon-styled {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background: var(--accent-soft);
+            border: 1px solid rgba(139, 92, 246, 0.3);
+            border-radius: 10px;
+            font-family: var(--font-mono);
+            font-size: 0.875rem;
+            font-weight: 600;
+            color: var(--accent-secondary);
+            margin-bottom: 1rem;
+        }
+
+        .problem-card h3 {
+            font-size: 1.125rem;
+            font-weight: 600;
+            margin-bottom: 0.75rem;
+            color: var(--text-primary);
+        }
+
+        .problem-card p {
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+            line-height: 1.6;
+        }
+
+        /* Solution Section */
+        .solution {
+            background: var(--bg-primary);
+            position: relative;
+        }
+
+        .solution::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 800px;
+            height: 400px;
+            background: radial-gradient(ellipse, rgba(139, 92, 246, 0.06) 0%, transparent 70%);
+            pointer-events: none;
+        }
+
+        .solution-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1.5rem;
+        }
+
+        .solution-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-subtle);
+            border-radius: 16px;
+            padding: 2rem;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .solution-card:hover {
+            border-color: rgba(139, 92, 246, 0.3);
+            box-shadow: 0 0 40px rgba(139, 92, 246, 0.1);
+        }
+
+        .solution-card.featured {
+            grid-column: span 2;
+            background: linear-gradient(135deg, rgba(139, 92, 246, 0.1) 0%, var(--bg-card) 100%);
+            border-color: rgba(139, 92, 246, 0.2);
+        }
+
+        .solution-icon {
+            width: 48px;
+            height: 48px;
+            background: var(--accent-soft);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            margin-bottom: 1.25rem;
+        }
+
+        .solution-icon-styled {
+            width: 48px;
+            height: 48px;
+            background: var(--accent-soft);
+            border: 1px solid rgba(139, 92, 246, 0.2);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 1.25rem;
+            color: var(--accent-secondary);
+        }
+
+        .solution-icon-styled svg {
+            width: 24px;
+            height: 24px;
+        }
+
+        .solution-card h3 {
+            font-size: 1.25rem;
+            font-weight: 600;
+            margin-bottom: 0.75rem;
+        }
+
+        .solution-card p {
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+            line-height: 1.7;
+        }
+
+        /* Demo Section */
+        .demo {
+            background: var(--bg-secondary);
+        }
+
+        .demo-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            gap: 2rem;
+        }
+
+        .demo-card {
+            background: var(--bg-tertiary);
+            border: 1px solid var(--border-subtle);
+            border-radius: 16px;
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .demo-card:hover {
+            border-color: var(--border-hover);
+            transform: translateY(-4px);
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.4);
+        }
+
+        .demo-question {
+            background: linear-gradient(135deg, var(--accent-primary) 0%, #6d28d9 100%);
+            padding: 1.25rem 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            font-weight: 600;
+        }
+
+        .demo-question-icon {
+            width: 28px;
+            height: 28px;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+
+        .demo-answer {
+            padding: 1.5rem;
+        }
+
+        .demo-answer h4 {
+            font-size: 0.875rem;
+            font-weight: 600;
+            color: var(--accent-secondary);
+            margin: 1.25rem 0 0.5rem;
+        }
+
+        .demo-answer h4:first-child {
+            margin-top: 0;
+        }
+
+        .demo-answer p {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+            margin-bottom: 0.75rem;
+        }
+
+        .demo-answer ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .demo-answer li {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+            padding: 0.375rem 0;
+            padding-left: 1.25rem;
+            position: relative;
+        }
+
+        .demo-answer li::before {
+            content: "→";
+            position: absolute;
+            left: 0;
+            color: var(--accent-primary);
+            font-size: 0.75rem;
+        }
+
+        .demo-answer strong {
+            color: var(--text-primary);
+        }
+
+        .workout-item {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.375rem 0;
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+        }
+
+        .workout-item strong {
+            color: var(--text-primary);
+        }
+
+        /* Testimonials */
+        .testimonials {
+            background: var(--bg-primary);
+        }
+
+        .testimonials-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .testimonial-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-subtle);
+            border-radius: 16px;
+            padding: 2rem;
+            transition: all 0.3s ease;
+        }
+
+        .testimonial-card:hover {
+            border-color: var(--border-hover);
+        }
+
+        .testimonial-quote {
+            font-size: 1rem;
+            color: var(--text-secondary);
+            line-height: 1.7;
+            margin-bottom: 1.5rem;
+            font-style: italic;
+        }
+
+        .testimonial-quote::before {
+            content: """;
+            font-size: 3rem;
+            color: var(--accent-primary);
+            line-height: 0;
+            display: block;
+            margin-bottom: 0.5rem;
+        }
+
+        .testimonial-author {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .testimonial-avatar {
+            width: 48px;
+            height: 48px;
+            background: var(--gradient-accent);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.25rem;
+        }
+
+        .testimonial-avatar-styled {
+            width: 48px;
+            height: 48px;
+            background: var(--gradient-accent);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.875rem;
+            font-weight: 600;
+            color: white;
+            letter-spacing: 0.02em;
+        }
+
+        .testimonial-info h4 {
+            font-size: 0.95rem;
+            font-weight: 600;
+            color: var(--text-primary);
+        }
+
+        .testimonial-info p {
+            font-size: 0.8rem;
+            color: var(--text-muted);
+        }
+
+        /* FAQ Section */
+        .faq {
+            background: var(--bg-secondary);
+        }
+
+        .faq-grid {
+            max-width: 800px;
+            margin: 0 auto;
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .faq-item {
+            background: var(--bg-card);
+            border: 1px solid var(--border-subtle);
+            border-radius: 12px;
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .faq-item:hover {
+            border-color: var(--border-hover);
+        }
+
+        .faq-question {
+            padding: 1.25rem 1.5rem;
+            font-weight: 600;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: color 0.2s ease;
+        }
+
+        .faq-question:hover {
+            color: var(--accent-secondary);
+        }
+
+        .faq-icon {
+            font-size: 1.25rem;
+            color: var(--accent-primary);
+            transition: transform 0.3s ease;
+        }
+
+        .faq-item.open .faq-icon {
+            transform: rotate(45deg);
+        }
+
+        .faq-answer {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease, padding 0.3s ease;
+        }
+
+        .faq-item.open .faq-answer {
+            max-height: 200px;
+            padding: 0 1.5rem 1.25rem;
+        }
+
+        .faq-answer p {
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+            line-height: 1.7;
+        }
+
+        /* Contribute / CTA Section */
+        .contribute {
+            background: var(--bg-primary);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .contribute::before {
+            content: "";
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 1000px;
+            height: 500px;
+            background: radial-gradient(ellipse, rgba(139, 92, 246, 0.1) 0%, transparent 60%);
+            pointer-events: none;
+        }
+
+        .contribute-content {
+            text-align: center;
+            max-width: 700px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 1;
+        }
+
+        .contribute-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-subtle);
+            border-radius: 20px;
+            padding: 3rem;
+            margin-top: 2rem;
+        }
+
+        .contribute-items {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .contribute-item {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            padding: 1rem;
+            background: var(--bg-secondary);
+            border-radius: 12px;
+            transition: all 0.2s ease;
+        }
+
+        .contribute-item:hover {
+            background: var(--accent-soft);
+            transform: translateX(4px);
+        }
+
+        .contribute-item-icon {
+            font-size: 1.25rem;
+        }
+
+        .contribute-item-icon-styled {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 32px;
+            height: 32px;
+            background: var(--accent-soft);
+            border-radius: 8px;
+            color: var(--accent-secondary);
+            flex-shrink: 0;
+        }
+
+        .contribute-item-icon-styled svg {
+            width: 18px;
+            height: 18px;
+        }
+
+        .contribute-item span {
+            font-size: 0.95rem;
+            color: var(--text-secondary);
+        }
+
+        .email-cta {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.75rem;
+            padding: 1rem 2rem;
+            background: transparent;
+            color: var(--accent-secondary);
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1rem;
+            border: 1px solid var(--accent-primary);
+            border-radius: 12px;
+            transition: all 0.3s ease;
+        }
+
+        .email-cta svg {
+            width: 18px;
+            height: 18px;
+            flex-shrink: 0;
+        }
+
+        .email-cta:hover {
+            background: var(--accent-soft);
+            box-shadow: 0 0 30px var(--accent-glow);
+        }
+
+        /* Footer */
+        footer {
+            background: var(--bg-primary);
+            border-top: 1px solid var(--border-subtle);
+            padding: 3rem 2rem;
+            text-align: center;
+        }
+
+        footer p {
+            font-size: 0.875rem;
+            color: var(--text-muted);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero {
+                padding: 7rem 1.5rem 4rem;
+            }
+
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .hero-description {
+                font-size: 1.1rem;
+            }
+
+            section {
+                padding: 4rem 1.5rem;
+            }
+
+            .solution-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .solution-card.featured {
+                grid-column: span 1;
+            }
+
+            .demo-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .nav-cta span {
+                display: none;
+            }
+        }
+
+        /* Scroll animations */
+        .reveal {
+            opacity: 0;
+            transform: translateY(40px);
+            transition: opacity 0.8s ease, transform 0.8s ease;
+        }
+
+        .reveal.visible {
+            opacity: 1;
+            transform: translateY(0);
         }
     </style>
 </head>
 <body>
     <!-- Header -->
     <header>
-        <a href="#" class="logo">Softball Yoda</a>
+        <div class="header-content">
+            <a href="#" class="logo">
+                <span class="logo-icon">🥎</span>
+                <span>Softball Yoda</span>
+            </a>
+            <a href="https://chatgpt.com/g/g-67aea3b01bd881918f4b10bf7e10573e-softball-yoda" class="nav-cta">
+                <span>Start Chatting</span>
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M13 7l5 5m0 0l-5 5m5-5H6" />
+                </svg>
+            </a>
+        </div>
     </header>
 
     <!-- Hero Section -->
     <section class="hero">
         <div class="hero-content">
-            <h1>Welcome to the Softball Yoda Community</h1>
-            <p class="hero-subtitle">Your AI-Powered Training Companion</p>
-            <p>Connect, learn and grow your game with Softball Yoda, our AI-powered chatbot designed to answer your questions, design training drills, offer nutrition tips, and bring players together.</p>
-            <a href="https://chatgpt.com/g/g-67aea3b01bd881918f4b10bf7e10573e-softball-yoda" class="cta-button">Start Chatting</a>
+            <div class="hero-badge animate-in delay-1">
+                AI-Powered Training Companion
+            </div>
+            <h1 class="animate-in delay-2">Your Personal Softball Training Intelligence</h1>
+            <p class="hero-description animate-in delay-3">
+                Connect, learn, and grow your game with Softball Yoda — an AI assistant that answers your questions, designs custom drills, offers nutrition tips, and helps players reach their potential.
+            </p>
+            <a href="https://chatgpt.com/g/g-67aea3b01bd881918f4b10bf7e10573e-softball-yoda" class="hero-cta animate-in delay-4">
+                Start Training Now
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M13 7l5 5m0 0l-5 5m5-5H6" />
+                </svg>
+            </a>
+            <p class="hero-note animate-in delay-5">Free to use with a ChatGPT account</p>
         </div>
     </section>
 
-    <!-- Features Section -->
-    <section class="features">
-        <div class="features-grid">
-            <div class="feature-card">
-                <div class="feature-icon">🎯</div>
-                <h3>Personalized Training</h3>
-                <p>Get custom training drills and workouts tailored to your skill level and goals</p>
+    <!-- Problem Section -->
+    <section class="problem">
+        <div class="section-container">
+            <div class="section-header reveal">
+                <span class="section-label">The Challenge</span>
+                <h2 class="section-title">Coaching comes with real challenges</h2>
+                <p class="section-subtitle">Players and coaches face obstacles that limit growth and performance.</p>
             </div>
-            <div class="feature-card">
-                <div class="feature-icon">💪</div>
-                <h3>Expert Guidance</h3>
-                <p>Receive professional advice on technique, strategy, and game improvement</p>
-            </div>
-            <div class="feature-card">
-                <div class="feature-icon">🥗</div>
-                <h3>Nutrition Tips</h3>
-                <p>Learn about optimal nutrition and meal planning for peak performance</p>
-            </div>
-            <div class="feature-card">
-                <div class="feature-icon">🆓</div>
-                <h3>Completely Free</h3>
-                <p>This service is completely free - only a free ChatGPT account is needed to get started</p>
+            <div class="problem-grid">
+                <div class="problem-card reveal">
+                    <span class="problem-icon-styled">01</span>
+                    <h3>Limited Practice Time</h3>
+                    <p>Practice doesn't allow enough time to cover all the skills, drills, and knowledge players need to improve.</p>
+                </div>
+                <div class="problem-card reveal">
+                    <span class="problem-icon-styled">02</span>
+                    <h3>Inconsistent Guidance</h3>
+                    <p>Players often lack access to expert advice when they need it most — between practices and during off-season.</p>
+                </div>
+                <div class="problem-card reveal">
+                    <span class="problem-icon-styled">03</span>
+                    <h3>Generic Training Plans</h3>
+                    <p>One-size-fits-all workouts don't address individual skill gaps, positions, or personal goals.</p>
+                </div>
             </div>
         </div>
     </section>
 
-    <!-- Sample Chats Section -->
-    <section class="sample-chats">
-        <h2 class="section-title">Sample Chats & Answers</h2>
-        <div class="chats-container">
-            <!-- Chat 1 -->
-            <div class="chat-card">
-                <div class="chat-question">
-                    How to test if a bat truly fits
+    <!-- Solution Section -->
+    <section class="solution">
+        <div class="section-container">
+            <div class="section-header reveal">
+                <span class="section-label">The Solution</span>
+                <h2 class="section-title">Your AI training partner, always ready</h2>
+                <p class="section-subtitle">Get personalized guidance anytime, anywhere.</p>
+            </div>
+            <div class="solution-grid">
+                <div class="solution-card featured reveal">
+                    <div class="solution-icon-styled"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4"/><path d="M12 8h.01"/></svg></div>
+                    <h3>AI-Powered Personalization</h3>
+                    <p>Tell Softball Yoda about your position, skill level, and goals. Get custom drills, workout plans, and training advice tailored specifically to you.</p>
                 </div>
-                <div class="chat-answer">
-                    <p>Beyond guidelines, the <em>feel</em> is what tells you what works best. Try these:</p>
-                    
-                    <h4>1. Reach test</h4>
-                    <ul>
-                        <li>Place the knob of the bat against her chest (sternum), barrel out to the side.</li>
-                        <li>If she can just barely reach the end of the barrel with her fingertips, it's a good length.</li>
-                    </ul>
-
-                    <h4>2. Swing-weight test</h4>
-                    <ul>
-                        <li>Have her hold the bat out straight (one arm) parallel to the ground for 20–30 seconds.</li>
-                        <li>If she strains, leans, or can't keep it level, the bat is probably too heavy.</li>
-                    </ul>
-
-                    <h4>3. Control vs. power balance</h4>
-                    <ul>
-                        <li>Start with a lighter bat that she can control well and swing fast.</li>
-                    </ul>
+                <div class="solution-card reveal">
+                    <div class="solution-icon-styled"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/></svg></div>
+                    <h3>Custom Drills</h3>
+                    <p>Receive training drills designed for your specific needs, whether you're a pitcher, catcher, or outfielder.</p>
+                </div>
+                <div class="solution-card reveal">
+                    <div class="solution-icon-styled"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22c5.523 0 10-4.477 10-10S17.523 2 12 2 2 6.477 2 12s4.477 10 10 10z"/><path d="m9 12 2 2 4-4"/></svg></div>
+                    <h3>Expert Guidance</h3>
+                    <p>Get professional advice on technique, strategy, and mental game improvement.</p>
+                </div>
+                <div class="solution-card reveal">
+                    <div class="solution-icon-styled"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12h20"/><path d="M12 2v20"/><path d="m4.93 4.93 14.14 14.14"/><path d="m19.07 4.93-14.14 14.14"/></svg></div>
+                    <h3>Nutrition Plans</h3>
+                    <p>Learn about optimal nutrition and meal planning for peak athletic performance.</p>
+                </div>
+                <div class="solution-card reveal">
+                    <div class="solution-icon-styled"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></div>
+                    <h3>Completely Free</h3>
+                    <p>All you need is a free ChatGPT account to start your training journey today.</p>
                 </div>
             </div>
+        </div>
+    </section>
 
-            <!-- Chat 2 -->
-            <div class="chat-card">
-                <div class="chat-question">
-                    Accuracy Tune-Up + Arm Activation
+    <!-- Demo Section -->
+    <section class="demo">
+        <div class="section-container">
+            <div class="section-header reveal">
+                <span class="section-label">See It In Action</span>
+                <h2 class="section-title">Sample conversations</h2>
+                <p class="section-subtitle">Here's what a chat with Softball Yoda looks like.</p>
+            </div>
+            <div class="demo-grid">
+                <div class="demo-card reveal">
+                    <div class="demo-question">
+                        <div class="demo-question-icon">→</div>
+                        <span>How to test if a bat truly fits</span>
+                    </div>
+                    <div class="demo-answer">
+                        <p>Beyond guidelines, the <em>feel</em> is what tells you what works best.</p>
+                        <h4>1. Reach Test</h4>
+                        <ul>
+                            <li>Place the knob against her chest, barrel out to the side</li>
+                            <li>If she can just barely reach the end with fingertips, it's a good length</li>
+                        </ul>
+                        <h4>2. Swing-Weight Test</h4>
+                        <ul>
+                            <li>Hold the bat out straight (one arm) for 20–30 seconds</li>
+                            <li>If she strains or can't keep it level, the bat is too heavy</li>
+                        </ul>
+                        <h4>3. Control vs. Power</h4>
+                        <ul>
+                            <li>Start with a lighter bat she can control well and swing fast</li>
+                        </ul>
+                    </div>
                 </div>
-                <div class="chat-answer">
-                    <p><strong>Goal:</strong> Light throwing day to rewire precision and feel</p>
-                    
-                    <h4>Workout:</h4>
-                    <div class="workout-item">⚡ <strong>Resistance Band Shoulder Activation</strong> – 2x15</div>
-                    <div class="workout-item">🎯 <strong>Wrist Snap Drill</strong> – 3x20 (normal ball)</div>
-                    <div class="workout-item">🎯 <strong>4-Corner Target Drill (Light Throws)</strong> – 3 rounds</div>
-                    <div class="workout-item">🧘 <strong>Yoga Flow + Stretching</strong> – 15 min</div>
-                    <div class="workout-item">🔥 <strong>Plank with Reach</strong> – 3x30 sec</div>
-                    <div class="workout-item">🎯 <strong>Spin Drill (Grip & Flick)</strong> – 3x10</div>
-                    <div class="workout-item">🧠 <strong>Visualization (Pitch sequences, pressure count)</strong> – 5 min</div>
+                <div class="demo-card reveal">
+                    <div class="demo-question">
+                        <div class="demo-question-icon">→</div>
+                        <span>Accuracy Tune-Up + Arm Activation</span>
+                    </div>
+                    <div class="demo-answer">
+                        <p><strong>Goal:</strong> Light throwing day to rewire precision and feel</p>
+                        <h4>Workout</h4>
+                        <div class="workout-item">⚡ <strong>Band Shoulder Activation</strong> – 2×15</div>
+                        <div class="workout-item">🎯 <strong>Wrist Snap Drill</strong> – 3×20</div>
+                        <div class="workout-item">🎯 <strong>4-Corner Target Drill</strong> – 3 rounds</div>
+                        <div class="workout-item">🧘 <strong>Yoga Flow + Stretching</strong> – 15 min</div>
+                        <div class="workout-item">🔥 <strong>Plank with Reach</strong> – 3×30 sec</div>
+                        <div class="workout-item">🧠 <strong>Visualization</strong> – 5 min</div>
+                        <h4>Meal Plan</h4>
+                        <ul>
+                            <li><strong>Breakfast:</strong> Protein pancakes + almond butter</li>
+                            <li><strong>Lunch:</strong> Tuna salad wrap + fruit</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
 
-                    <h4>Meal Plan (Accuracy + Energy):</h4>
-                    <ul>
-                        <li><strong>Breakfast:</strong> Protein pancakes + almond butter</li>
-                        <li><strong>Lunch:</strong> Tuna salad wrap + fruit</li>
-                    </ul>
+    <!-- Testimonials Section -->
+    <section class="testimonials">
+        <div class="section-container">
+            <div class="section-header reveal">
+                <span class="section-label">Community</span>
+                <h2 class="section-title">What players are saying</h2>
+            </div>
+            <div class="testimonials-grid">
+                <div class="testimonial-card reveal">
+                    <p class="testimonial-quote">Softball Yoda helped me create a training routine that actually fits my schedule. The personalized drills have really improved my pitching accuracy.</p>
+                    <div class="testimonial-author">
+                        <div class="testimonial-avatar-styled">HP</div>
+                        <div class="testimonial-info">
+                            <h4>High School Pitcher</h4>
+                            <p>Varsity Player</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="testimonial-card reveal">
+                    <p class="testimonial-quote">As a coach, I use Softball Yoda to generate new drill ideas for practice. It's like having an assistant coach available 24/7.</p>
+                    <div class="testimonial-author">
+                        <div class="testimonial-avatar-styled">TC</div>
+                        <div class="testimonial-info">
+                            <h4>Travel Ball Coach</h4>
+                            <p>12U Team</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="testimonial-card reveal">
+                    <p class="testimonial-quote">The nutrition advice has been a game-changer for my daughter. She has more energy during tournaments now.</p>
+                    <div class="testimonial-author">
+                        <div class="testimonial-avatar-styled">SP</div>
+                        <div class="testimonial-info">
+                            <h4>Softball Parent</h4>
+                            <p>Youth League</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section class="faq">
+        <div class="section-container">
+            <div class="section-header reveal">
+                <span class="section-label">FAQ</span>
+                <h2 class="section-title">Frequently asked questions</h2>
+            </div>
+            <div class="faq-grid">
+                <div class="faq-item reveal">
+                    <div class="faq-question">
+                        <span>Is Softball Yoda really free?</span>
+                        <span class="faq-icon">+</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Yes! Softball Yoda is completely free to use. You just need a free ChatGPT account to get started.</p>
+                    </div>
+                </div>
+                <div class="faq-item reveal">
+                    <div class="faq-question">
+                        <span>What kind of questions can I ask?</span>
+                        <span class="faq-icon">+</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>You can ask about training drills, workout plans, technique improvement, nutrition, mental game, equipment recommendations, and much more.</p>
+                    </div>
+                </div>
+                <div class="faq-item reveal">
+                    <div class="faq-question">
+                        <span>Can coaches use Softball Yoda?</span>
+                        <span class="faq-icon">+</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Absolutely! Coaches use Softball Yoda to generate practice plans, drill ideas, and get advice on player development.</p>
+                    </div>
+                </div>
+                <div class="faq-item reveal">
+                    <div class="faq-question">
+                        <span>How accurate is the advice?</span>
+                        <span class="faq-icon">+</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Softball Yoda is trained on extensive softball knowledge, but always consider advice alongside guidance from your coaches and medical professionals.</p>
+                    </div>
                 </div>
             </div>
         </div>
@@ -551,23 +1197,93 @@
 
     <!-- Contribute Section -->
     <section class="contribute">
-        <div class="contribute-content">
-            <h2 class="section-title" style="color: white;">You Can Contribute Too!</h2>
-            <div class="contribute-list">
-                <p>Help us build the ultimate softball training community:</p>
-                <ul>
-                    <li>📚 Donate your training books, videos, and drills</li>
-                    <li>🌐 Share our website and help train the chatbot</li>
-                    <li>⭐ Drop a review and share your experience</li>
-                </ul>
+        <div class="section-container">
+            <div class="contribute-content reveal">
+                <span class="section-label">Join Us</span>
+                <h2 class="section-title">Help build the ultimate training community</h2>
+                <p class="section-subtitle">We're always looking for ways to improve Softball Yoda.</p>
+                <div class="contribute-card">
+                    <div class="contribute-items">
+                        <div class="contribute-item">
+                            <span class="contribute-item-icon-styled"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg></span>
+                            <span>Donate training books, videos & drills</span>
+                        </div>
+                        <div class="contribute-item">
+                            <span class="contribute-item-icon-styled"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg></span>
+                            <span>Share our website with your team</span>
+                        </div>
+                        <div class="contribute-item">
+                            <span class="contribute-item-icon-styled"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg></span>
+                            <span>Leave a review & share your experience</span>
+                        </div>
+                    </div>
+                    <a href="mailto:help@softballyoda.com" class="email-cta">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+                        help@softballyoda.com
+                    </a>
+                </div>
             </div>
-            <a href="mailto:help@softballyoda.com" class="email-contact">📧 help@softballyoda.com</a>
         </div>
     </section>
 
     <!-- Footer -->
     <footer>
-        <p>&copy; 2025 Softball Yoda. All rights reserved.</p>
+        <p>© 2025 Softball Yoda. All rights reserved.</p>
     </footer>
+
+    <!-- Scroll Animation Script -->
+    <script>
+        // Intersection Observer for scroll animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach((entry, index) => {
+                if (entry.isIntersecting) {
+                    // Add staggered delay based on element position
+                    setTimeout(() => {
+                        entry.target.classList.add('visible');
+                    }, index * 100);
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+        // FAQ Toggle
+        document.querySelectorAll('.faq-question').forEach(question => {
+            question.addEventListener('click', () => {
+                const item = question.parentElement;
+                const isOpen = item.classList.contains('open');
+                
+                // Close all other FAQs
+                document.querySelectorAll('.faq-item').forEach(faq => {
+                    faq.classList.remove('open');
+                });
+                
+                // Toggle current FAQ
+                if (!isOpen) {
+                    item.classList.add('open');
+                }
+            });
+        });
+
+        // Header scroll effect
+        let lastScroll = 0;
+        window.addEventListener('scroll', () => {
+            const header = document.querySelector('header');
+            const currentScroll = window.pageYOffset;
+            
+            if (currentScroll > 100) {
+                header.style.background = 'rgba(10, 10, 15, 0.95)';
+            } else {
+                header.style.background = 'rgba(10, 10, 15, 0.8)';
+            }
+            
+            lastScroll = currentScroll;
+        });
+    </script>
 </body>
 </html>
