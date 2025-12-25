@@ -11,7 +11,7 @@
     </script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Softball Yoda - AI-Powered Softball Training Assistant</title>
+    <title>Softball Sensei - AI-Powered Softball Training Assistant</title>
     
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -48,6 +48,7 @@
 
         html {
             scroll-behavior: smooth;
+            scroll-padding-top: 80px;
         }
 
         body {
@@ -191,6 +192,139 @@
         .nav-cta:hover {
             transform: translateY(-2px);
             box-shadow: 0 0 30px var(--accent-glow), 0 10px 40px rgba(139, 92, 246, 0.3);
+        }
+
+        /* Navigation Links */
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 0.25rem;
+        }
+
+        .nav-link {
+            padding: 0.5rem 1rem;
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-size: 0.875rem;
+            font-weight: 500;
+            border-radius: 6px;
+            transition: all 0.2s ease;
+            position: relative;
+        }
+
+        .nav-link:hover {
+            color: var(--text-primary);
+            background: rgba(255, 255, 255, 0.05);
+        }
+
+        .nav-link::after {
+            content: "";
+            position: absolute;
+            bottom: 4px;
+            left: 50%;
+            transform: translateX(-50%) scaleX(0);
+            width: 20px;
+            height: 2px;
+            background: var(--accent-primary);
+            border-radius: 1px;
+            transition: transform 0.2s ease;
+        }
+
+        .nav-link:hover::after {
+            transform: translateX(-50%) scaleX(1);
+        }
+
+        /* Mobile Navigation */
+        .nav-toggle {
+            display: none;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            width: 40px;
+            height: 40px;
+            background: transparent;
+            border: 1px solid var(--border-subtle);
+            border-radius: 8px;
+            cursor: pointer;
+            gap: 5px;
+            transition: all 0.2s ease;
+        }
+
+        .nav-toggle:hover {
+            border-color: var(--border-hover);
+            background: rgba(255, 255, 255, 0.03);
+        }
+
+        .nav-toggle span {
+            width: 18px;
+            height: 2px;
+            background: var(--text-secondary);
+            border-radius: 2px;
+            transition: all 0.3s ease;
+        }
+
+        .nav-toggle.active span:nth-child(1) {
+            transform: translateY(7px) rotate(45deg);
+        }
+
+        .nav-toggle.active span:nth-child(2) {
+            opacity: 0;
+        }
+
+        .nav-toggle.active span:nth-child(3) {
+            transform: translateY(-7px) rotate(-45deg);
+        }
+
+        .mobile-nav {
+            display: none;
+            position: fixed;
+            top: 60px;
+            left: 0;
+            right: 0;
+            background: rgba(10, 10, 15, 0.98);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border-bottom: 1px solid var(--border-subtle);
+            padding: 1rem;
+            transform: translateY(-100%);
+            opacity: 0;
+            transition: all 0.3s ease;
+            z-index: 99;
+        }
+
+        .mobile-nav.active {
+            transform: translateY(0);
+            opacity: 1;
+        }
+
+        .mobile-nav-link {
+            display: block;
+            padding: 0.875rem 1rem;
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-size: 0.95rem;
+            font-weight: 500;
+            border-radius: 8px;
+            transition: all 0.2s ease;
+        }
+
+        .mobile-nav-link:hover {
+            color: var(--text-primary);
+            background: rgba(255, 255, 255, 0.05);
+        }
+
+        @media (max-width: 900px) {
+            .nav-links {
+                display: none;
+            }
+
+            .nav-toggle {
+                display: flex;
+            }
+
+            .mobile-nav {
+                display: block;
+            }
         }
 
         /* Hero Section */
@@ -951,9 +1085,22 @@
         <div class="header-content">
             <a href="#" class="logo">
                 <span class="logo-icon">🥎</span>
-                <span>Softball Yoda</span>
+                <span>Softball Sensei</span>
             </a>
-            <a href="https://chatgpt.com/g/g-67aea3b01bd881918f4b10bf7e10573e-softball-yoda" class="nav-cta">
+            <nav class="nav-links">
+                <a href="#challenge" class="nav-link">Challenge</a>
+                <a href="#solution" class="nav-link">Solution</a>
+                <a href="#demo" class="nav-link">Demo</a>
+                <a href="#testimonials" class="nav-link">Reviews</a>
+                <a href="#faq" class="nav-link">FAQ</a>
+                <a href="#contribute" class="nav-link">Join Us</a>
+            </nav>
+            <button class="nav-toggle" aria-label="Toggle navigation">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+            <a href="https://chatgpt.com/g/g-67aea3b01bd881918f4b10bf7e10573e-softball-sensei" class="nav-cta">
                 <span>Start Chatting</span>
                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
                     <path stroke-linecap="round" stroke-linejoin="round" d="M13 7l5 5m0 0l-5 5m5-5H6" />
@@ -961,6 +1108,16 @@
             </a>
         </div>
     </header>
+
+    <!-- Mobile Navigation -->
+    <nav class="mobile-nav">
+        <a href="#challenge" class="mobile-nav-link">Challenge</a>
+        <a href="#solution" class="mobile-nav-link">Solution</a>
+        <a href="#demo" class="mobile-nav-link">Demo</a>
+        <a href="#testimonials" class="mobile-nav-link">Reviews</a>
+        <a href="#faq" class="mobile-nav-link">FAQ</a>
+        <a href="#contribute" class="mobile-nav-link">Join Us</a>
+    </nav>
 
     <!-- Hero Section -->
     <section class="hero">
@@ -970,9 +1127,9 @@
             </div>
             <h1 class="animate-in delay-2">Your Personal Softball Training Intelligence</h1>
             <p class="hero-description animate-in delay-3">
-                Connect, learn, and grow your game with Softball Yoda — an AI assistant that answers your questions, designs custom drills, offers nutrition tips, and helps players reach their potential.
+                Connect, learn, and grow your game with Softball Sensei — an AI assistant that answers your questions, designs custom drills, offers nutrition tips, and helps players reach their potential.
             </p>
-            <a href="https://chatgpt.com/g/g-67aea3b01bd881918f4b10bf7e10573e-softball-yoda" class="hero-cta animate-in delay-4">
+            <a href="https://chatgpt.com/g/g-67aea3b01bd881918f4b10bf7e10573e-softball-sensei" class="hero-cta animate-in delay-4">
                 Start Training Now
                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
                     <path stroke-linecap="round" stroke-linejoin="round" d="M13 7l5 5m0 0l-5 5m5-5H6" />
@@ -983,7 +1140,7 @@
     </section>
 
     <!-- Problem Section -->
-    <section class="problem">
+    <section id="challenge" class="problem">
         <div class="section-container">
             <div class="section-header reveal">
                 <span class="section-label">The Challenge</span>
@@ -1011,7 +1168,7 @@
     </section>
 
     <!-- Solution Section -->
-    <section class="solution">
+    <section id="solution" class="solution">
         <div class="section-container">
             <div class="section-header reveal">
                 <span class="section-label">The Solution</span>
@@ -1022,7 +1179,7 @@
                 <div class="solution-card featured reveal">
                     <div class="solution-icon-styled"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4"/><path d="M12 8h.01"/></svg></div>
                     <h3>AI-Powered Personalization</h3>
-                    <p>Tell Softball Yoda about your position, skill level, and goals. Get custom drills, workout plans, and training advice tailored specifically to you.</p>
+                    <p>Tell Softball Sensei about your position, skill level, and goals. Get custom drills, workout plans, and training advice tailored specifically to you.</p>
                 </div>
                 <div class="solution-card reveal">
                     <div class="solution-icon-styled"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/></svg></div>
@@ -1049,12 +1206,12 @@
     </section>
 
     <!-- Demo Section -->
-    <section class="demo">
+    <section id="demo" class="demo">
         <div class="section-container">
             <div class="section-header reveal">
                 <span class="section-label">See It In Action</span>
                 <h2 class="section-title">Sample conversations</h2>
-                <p class="section-subtitle">Here's what a chat with Softball Yoda looks like.</p>
+                <p class="section-subtitle">Here's what a chat with Softball Sensei looks like.</p>
             </div>
             <div class="demo-grid">
                 <div class="demo-card reveal">
@@ -1106,7 +1263,7 @@
     </section>
 
     <!-- Testimonials Section -->
-    <section class="testimonials">
+    <section id="testimonials" class="testimonials">
         <div class="section-container">
             <div class="section-header reveal">
                 <span class="section-label">Community</span>
@@ -1114,7 +1271,7 @@
             </div>
             <div class="testimonials-grid">
                 <div class="testimonial-card reveal">
-                    <p class="testimonial-quote">Softball Yoda helped me create a training routine that actually fits my schedule. The personalized drills have really improved my pitching accuracy.</p>
+                    <p class="testimonial-quote">Softball Sensei helped me create a training routine that actually fits my schedule. The personalized drills have really improved my pitching accuracy.</p>
                     <div class="testimonial-author">
                         <div class="testimonial-avatar-styled">HP</div>
                         <div class="testimonial-info">
@@ -1124,7 +1281,7 @@
                     </div>
                 </div>
                 <div class="testimonial-card reveal">
-                    <p class="testimonial-quote">As a coach, I use Softball Yoda to generate new drill ideas for practice. It's like having an assistant coach available 24/7.</p>
+                    <p class="testimonial-quote">As a coach, I use Softball Sensei to generate new drill ideas for practice. It's like having an assistant coach available 24/7.</p>
                     <div class="testimonial-author">
                         <div class="testimonial-avatar-styled">TC</div>
                         <div class="testimonial-info">
@@ -1148,7 +1305,7 @@
     </section>
 
     <!-- FAQ Section -->
-    <section class="faq">
+    <section id="faq" class="faq">
         <div class="section-container">
             <div class="section-header reveal">
                 <span class="section-label">FAQ</span>
@@ -1157,11 +1314,11 @@
             <div class="faq-grid">
                 <div class="faq-item reveal">
                     <div class="faq-question">
-                        <span>Is Softball Yoda really free?</span>
+                        <span>Is Softball Sensei really free?</span>
                         <span class="faq-icon">+</span>
                     </div>
                     <div class="faq-answer">
-                        <p>Yes! Softball Yoda is completely free to use. You just need a free ChatGPT account to get started.</p>
+                        <p>Yes! Softball Sensei is completely free to use. You just need a free ChatGPT account to get started.</p>
                     </div>
                 </div>
                 <div class="faq-item reveal">
@@ -1175,11 +1332,11 @@
                 </div>
                 <div class="faq-item reveal">
                     <div class="faq-question">
-                        <span>Can coaches use Softball Yoda?</span>
+                        <span>Can coaches use Softball Sensei?</span>
                         <span class="faq-icon">+</span>
                     </div>
                     <div class="faq-answer">
-                        <p>Absolutely! Coaches use Softball Yoda to generate practice plans, drill ideas, and get advice on player development.</p>
+                        <p>Absolutely! Coaches use Softball Sensei to generate practice plans, drill ideas, and get advice on player development.</p>
                     </div>
                 </div>
                 <div class="faq-item reveal">
@@ -1188,7 +1345,7 @@
                         <span class="faq-icon">+</span>
                     </div>
                     <div class="faq-answer">
-                        <p>Softball Yoda is trained on extensive softball knowledge, but always consider advice alongside guidance from your coaches and medical professionals.</p>
+                        <p>Softball Sensei is trained on extensive softball knowledge, but always consider advice alongside guidance from your coaches and medical professionals.</p>
                     </div>
                 </div>
             </div>
@@ -1196,12 +1353,12 @@
     </section>
 
     <!-- Contribute Section -->
-    <section class="contribute">
+    <section id="contribute" class="contribute">
         <div class="section-container">
             <div class="contribute-content reveal">
                 <span class="section-label">Join Us</span>
                 <h2 class="section-title">Help build the ultimate training community</h2>
-                <p class="section-subtitle">We're always looking for ways to improve Softball Yoda.</p>
+                <p class="section-subtitle">We're always looking for ways to improve Softball Sensei.</p>
                 <div class="contribute-card">
                     <div class="contribute-items">
                         <div class="contribute-item">
@@ -1217,9 +1374,9 @@
                             <span>Leave a review & share your experience</span>
                         </div>
                     </div>
-                    <a href="mailto:help@softballyoda.com" class="email-cta">
+                    <a href="mailto:help@softballsensei.com" class="email-cta">
                         <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
-                        help@softballyoda.com
+                        help@softballsensei.com
                     </a>
                 </div>
             </div>
@@ -1228,7 +1385,7 @@
 
     <!-- Footer -->
     <footer>
-        <p>© 2025 Softball Yoda. All rights reserved.</p>
+        <p>© 2025 Softball Sensei. All rights reserved.</p>
     </footer>
 
     <!-- Scroll Animation Script -->
@@ -1283,6 +1440,31 @@
             }
             
             lastScroll = currentScroll;
+        });
+
+        // Mobile Navigation Toggle
+        const navToggle = document.querySelector('.nav-toggle');
+        const mobileNav = document.querySelector('.mobile-nav');
+
+        navToggle.addEventListener('click', () => {
+            navToggle.classList.toggle('active');
+            mobileNav.classList.toggle('active');
+        });
+
+        // Close mobile nav when clicking a link
+        document.querySelectorAll('.mobile-nav-link').forEach(link => {
+            link.addEventListener('click', () => {
+                navToggle.classList.remove('active');
+                mobileNav.classList.remove('active');
+            });
+        });
+
+        // Close mobile nav when clicking outside
+        document.addEventListener('click', (e) => {
+            if (!navToggle.contains(e.target) && !mobileNav.contains(e.target)) {
+                navToggle.classList.remove('active');
+                mobileNav.classList.remove('active');
+            }
         });
     </script>
 </body>
