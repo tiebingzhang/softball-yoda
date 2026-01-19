@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>Softball Sensei – Video</title>
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="Softball Sensei instructional video" />
+
+  <!-- Helps browsers (especially Firefox) plan buffering -->
+  <link rel="preload" href="softball-sensei.mp4" as="video" type="video/mp4">
+
+  <style>
+    body {
+      margin: 0;
+      background: #0b0b0b;
+      color: #fff;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+    }
+
+    .container {
+      width: 100%;
+      max-width: 960px;
+      padding: 16px;
+    }
+
+    video {
+      width: 100%;
+      height: auto;
+      aspect-ratio: 1546 / 1080;
+      background: #000;
+      border-radius: 8px;
+    }
+    .caption {
+      margin-top: 10px;
+      font-size: 14px;
+      opacity: 0.75;
+      text-align: center;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="container">
+    <video
+      controls
+      preload="metadata"
+      playsinline
+      poster="poster.jpg"
+    >
+      <source src="softball-sensei.mp4" type="video/mp4">
+      Your browser does not support the video tag.
+    </video>
+
+    <div class="caption">
+      Softball Sensei
+    </div>
+  </div>
+</body>
+</html>
